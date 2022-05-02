@@ -31,7 +31,7 @@
 			<div class="container">
 				<h1 class="title">Simpson API</h1>
 
-				<div class="content" id="chuck-norris"></div>
+				<div class="content" id="simpsonquote"></div>
 			</div>
 		</section>
 
@@ -42,23 +42,24 @@
 			crossorigin="anonymous"
 		></script>
 		<script>
+
 		function fetchSimpsonJSON() {
   
-  const simpsonId = 1;
   const url = 'https://simpsons-quotes-api.herokuapp.com/quotes'; 
   axios.get(url)
     .then(function(response) {
-      return response.data[0]; 
+      return response.data 
     })
     .then(function(simpson) {
       console.log('data decoded from JSON:', simpson);
 
      
       const simpsonHtml = `
-        <p><strong>${simpson.character}</strong></p>
-        <img src="${simpson.image}" />
+        <p><strong>${simpson[0].character}</strong></p>
+        <p><strong>${simpson[0].quote}</strong></p>
+        <img src="${simpson[0].image}" />
       `;
-      document.querySelector('#simpson').innerHTML = simpsonHtml;
+      document.querySelector('#simpsonquote').innerHTML = simpsonHtml;
     });
 }
 
